@@ -15,5 +15,7 @@ namespace WEBAPIBiblioteca.Entities
         public string Formato { get; set; }
         public string NumeroPaginas { get; set; }
         public int PublicacionID { get; set; }
+        public bool Estado { get; set; }
+
     }
 }

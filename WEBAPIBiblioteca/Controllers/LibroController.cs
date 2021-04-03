@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,20 +39,56 @@ namespace WEBAPIBiblioteca.Controllers
 
         // POST api/<LibroController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Libro libro)
         {
+            try
+            {
+                context.Libro.Add(libro);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+            
         }
 
         // PUT api/<LibroController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] Libro libro)
         {
+            if (libro.LibroID == id)
+            {
+                context.Entry(libro).State = EntityState.Modified;
+                context.SaveChanges();
+                return Ok();
+
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
         }
 
         // DELETE api/<LibroController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var libro = context.Libro.FirstOrDefault(l =>l.LibroID == id);
+            if (libro !=null)
+            {
+                context.Libro.Remove(libro);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
