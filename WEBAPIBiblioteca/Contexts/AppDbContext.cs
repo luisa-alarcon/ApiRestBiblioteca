@@ -18,5 +18,6 @@ namespace WEBAPIBiblioteca.Contexts
         }
 
         public DbSet<Libro> Libro { get; set; }
+        public DbSet<Autor> Autor { get; set; }
     }
 }
