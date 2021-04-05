@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBAPIBiblioteca", "WEBAPIBiblioteca\WEBAPIBiblioteca.csproj", "{24C47BA0-835F-446E-BBC5-844AC372D60E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEBAPIBiblioteca", "WEBAPIBiblioteca\WEBAPIBiblioteca.csproj", "{24C47BA0-835F-446E-BBC5-844AC372D60E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_Biblioteca.GUI", "WebApi_Biblioteca.GUI\WebApi_Biblioteca.GUI.csproj", "{B2DA876B-FED4-4ED0-85E7-4841FAC70850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{24C47BA0-835F-446E-BBC5-844AC372D60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24C47BA0-835F-446E-BBC5-844AC372D60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24C47BA0-835F-446E-BBC5-844AC372D60E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DA876B-FED4-4ED0-85E7-4841FAC70850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DA876B-FED4-4ED0-85E7-4841FAC70850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DA876B-FED4-4ED0-85E7-4841FAC70850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DA876B-FED4-4ED0-85E7-4841FAC70850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

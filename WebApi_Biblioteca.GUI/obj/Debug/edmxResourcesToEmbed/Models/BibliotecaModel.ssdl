@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Autor">
+    <Key>
+      <PropertyRef Name="AutorID" />
+    </Key>
+    <Property Name="AutorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreAutor" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoAutor" Type="varchar" MaxLength="50" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Bliblioteca.dbo.Ejemplar_Estanteria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Ejemplar_Estanteria">
+    <Key>
+      <PropertyRef Name="EjemplarID" />
+      <PropertyRef Name="EstanteriaID" />
+    </Key>
+    <Property Name="EjemplarID" Type="int" Nullable="false" />
+    <Property Name="EstanteriaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ejemplares">
+    <Key>
+      <PropertyRef Name="EjemplarID" />
+    </Key>
+    <Property Name="EjemplarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroIdentificacion" Type="int" Nullable="false" />
+    <Property Name="CandidadEjemplares" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estante">
+    <Key>
+      <PropertyRef Name="EstanteID" />
+    </Key>
+    <Property Name="EstanteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoNumeroEstante" Type="int" Nullable="false" />
+    <Property Name="EstanteriaID" Type="int" />
+  </EntityType>
+  <EntityType Name="Estanterias">
+    <Key>
+      <PropertyRef Name="EstanteriaID" />
+    </Key>
+    <Property Name="EstanteriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoEstanteria" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="Alto" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ancho" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Libro">
+    <Key>
+      <PropertyRef Name="LibroID" />
+    </Key>
+    <Property Name="LibroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ISBM" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Titulo" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Formato" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="NumeroPaginas" Type="nchar" MaxLength="1000" Nullable="false" />
+    <Property Name="PublicacionID" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="AutorID" Type="int" />
+  </EntityType>
+  <EntityType Name="Publicacion">
+    <Key>
+      <PropertyRef Name="PublicacionID" />
+    </Key>
+    <Property Name="PublicacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tematica" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Idioma" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="FechaPublicacion" Type="date" Nullable="false" />
+    <Property Name="Editorial" Type="nchar" MaxLength="255" Nullable="false" />
+    <Property Name="EjemplarID" Type="int" Nullable="false" />
+    <Property Name="TipoPublicacion" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Revista">
+    <Key>
+      <PropertyRef Name="RevistaID" />
+    </Key>
+    <Property Name="RevistaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="NombreRevista" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="PublicacionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Ejemplar_Estanteria_Ejemplares">
+    <End Role="Ejemplares" Type="Self.Ejemplares" Multiplicity="1" />
+    <End Role="Ejemplar_Estanteria" Type="Self.Ejemplar_Estanteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ejemplares">
+        <PropertyRef Name="EjemplarID" />
+      </Principal>
+      <Dependent Role="Ejemplar_Estanteria">
+        <PropertyRef Name="EjemplarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ejemplar_Estanteria_Estanterias">
+    <End Role="Estanterias" Type="Self.Estanterias" Multiplicity="1" />
+    <End Role="Ejemplar_Estanteria" Type="Self.Ejemplar_Estanteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estanterias">
+        <PropertyRef Name="EstanteriaID" />
+      </Principal>
+      <Dependent Role="Ejemplar_Estanteria">
+        <PropertyRef Name="EstanteriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Estante_Estanterias">
+    <End Role="Estanterias" Type="Self.Estanterias" Multiplicity="0..1" />
+    <End Role="Estante" Type="Self.Estante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estanterias">
+        <PropertyRef Name="EstanteriaID" />
+      </Principal>
+      <Dependent Role="Estante">
+        <PropertyRef Name="EstanteriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libros_Autor(es)">
+    <End Role="Autor" Type="Self.Autor" Multiplicity="0..1" />
+    <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autor">
+        <PropertyRef Name="AutorID" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="AutorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libros_Publicacion">
+    <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="1" />
+    <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicacion">
+        <PropertyRef Name="PublicacionID" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="PublicacionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicacion_Ejemplares">
+    <End Role="Ejemplares" Type="Self.Ejemplares" Multiplicity="1" />
+    <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ejemplares">
+        <PropertyRef Name="EjemplarID" />
+      </Principal>
+      <Dependent Role="Publicacion">
+        <PropertyRef Name="EjemplarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Revista_Publicacion">
+    <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="1" />
+    <End Role="Revista" Type="Self.Revista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicacion">
+        <PropertyRef Name="PublicacionID" />
+      </Principal>
+      <Dependent Role="Revista">
+        <PropertyRef Name="PublicacionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BlibliotecaModelStoreContainer">
+    <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ejemplares" EntityType="Self.Ejemplares" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estante" EntityType="Self.Estante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estanterias" EntityType="Self.Estanterias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Publicacion" EntityType="Self.Publicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Revista" EntityType="Self.Revista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ejemplar_Estanteria" EntityType="Self.Ejemplar_Estanteria" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ejemplar_Estanteria].[EjemplarID] AS [EjemplarID], 
+    [Ejemplar_Estanteria].[EstanteriaID] AS [EstanteriaID]
+    FROM [dbo].[Ejemplar_Estanteria] AS [Ejemplar_Estanteria]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Ejemplar_Estanteria_Ejemplares" Association="Self.FK_Ejemplar_Estanteria_Ejemplares">
+      <End Role="Ejemplares" EntitySet="Ejemplares" />
+      <End Role="Ejemplar_Estanteria" EntitySet="Ejemplar_Estanteria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ejemplar_Estanteria_Estanterias" Association="Self.FK_Ejemplar_Estanteria_Estanterias">
+      <End Role="Estanterias" EntitySet="Estanterias" />
+      <End Role="Ejemplar_Estanteria" EntitySet="Ejemplar_Estanteria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Estante_Estanterias" Association="Self.FK_Estante_Estanterias">
+      <End Role="Estanterias" EntitySet="Estanterias" />
+      <End Role="Estante" EntitySet="Estante" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libros_Autor(es)" Association="Self.FK_Libros_Autor(es)">
+      <End Role="Autor" EntitySet="Autor" />
+      <End Role="Libro" EntitySet="Libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libros_Publicacion" Association="Self.FK_Libros_Publicacion">
+      <End Role="Publicacion" EntitySet="Publicacion" />
+      <End Role="Libro" EntitySet="Libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicacion_Ejemplares" Association="Self.FK_Publicacion_Ejemplares">
+      <End Role="Ejemplares" EntitySet="Ejemplares" />
+      <End Role="Publicacion" EntitySet="Publicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Revista_Publicacion" Association="Self.FK_Revista_Publicacion">
+      <End Role="Publicacion" EntitySet="Publicacion" />
+      <End Role="Revista" EntitySet="Revista" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

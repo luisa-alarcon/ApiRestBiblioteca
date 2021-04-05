@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="14316adf9a224cedbff9f8c0afe9db6b" Name="Diagram1">
+        <EntityTypeShape EntityType="BlibliotecaModel.Autor" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Ejemplares" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Estante" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Estanterias" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Libro" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Publicacion" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.Revista" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlibliotecaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BlibliotecaModel.FK_Libros_Autor_es_" ManuallyRouted="false" />
+        <AssociationConnector Association="BlibliotecaModel.FK_Publicacion_Ejemplares" ManuallyRouted="false" />
+        <AssociationConnector Association="BlibliotecaModel.FK_Estante_Estanterias" ManuallyRouted="false" />
+        <AssociationConnector Association="BlibliotecaModel.FK_Libros_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BlibliotecaModel.FK_Revista_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BlibliotecaModel.Ejemplar_Estanteria" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
